@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Android Base</string>
+
+    <!-- App config strings-->
+
+    <string name="app_name">Hoang Thinh Android Base</string>
+
+    <!-- App Common Strings-->
+    <string name="text_loading">Loading...</string>
 </resources>
