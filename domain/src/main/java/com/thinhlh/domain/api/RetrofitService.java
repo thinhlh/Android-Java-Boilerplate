@@ -25,7 +25,7 @@ public final class RetrofitService {
 
     }
 
-    private static RetrofitService instance;
+    private static volatile RetrofitService instance;
 
     public static synchronized RetrofitService get() {
 

@@ -1,6 +1,7 @@
 package com.thinhlh.domain.api.interceptors;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -15,10 +16,9 @@ import okhttp3.Response;
  */
 public class BearerTokenInterceptor implements Interceptor {
 
-    private String accessToken;
+    private final String accessToken;
 
     private final Runnable timeOut;
-
 
     public BearerTokenInterceptor(String accessToken, Runnable timeOut) {
         this.accessToken = accessToken;

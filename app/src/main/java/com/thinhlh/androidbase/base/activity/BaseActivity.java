@@ -1,9 +1,12 @@
 package com.thinhlh.androidbase.base.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -16,10 +19,20 @@ import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.thinhlh.androidbase.R;
+import com.thinhlh.androidbase.base.dialog.AlertDialogOnClickListener;
+import com.thinhlh.androidbase.base.dialog.AppAlertDialog;
+import com.thinhlh.androidbase.base.dialog.AppFunctionDialog;
+import com.thinhlh.androidbase.base.dialog.AppLoadingDialog;
 import com.thinhlh.androidbase.base.viewmodel.BaseViewModel;
 import com.thinhlh.androidbase.base.viewmodel.ViewState;
 
-import kotlin.coroutines.CoroutineContext;
+import java.util.List;
 
 /**
  * Created by thinhlh on 02/03/2022.
@@ -94,7 +107,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, VM extends BaseVie
 
             } else if (viewState.equals(ViewState.SHOW_ERROR)) {
                 if (viewModel.errorMessage != null) {
-                    showError(viewModel.errorMessage);
+                    showError(viewModel.errorMessage, null);
                 }
             }
         });
@@ -107,9 +120,14 @@ public abstract class BaseActivity<T extends ViewDataBinding, VM extends BaseVie
 
     @Override
     protected void onStart() {
-
-        // Init loading dialogs here
         super.onStart();
+        initAppDialogs();
+    }
+
+    private void initAppDialogs() {
+        AppAlertDialog.get().init(this);
+        AppFunctionDialog.get().init(this);
+        AppLoadingDialog.get().init(this);
     }
 
     /**
@@ -135,17 +153,65 @@ public abstract class BaseActivity<T extends ViewDataBinding, VM extends BaseVie
         return super.dispatchTouchEvent(ev);
     }
 
-    private void showLoading(Boolean show) {
+    public void showLoading(Boolean show) {
         dismissLoading();
 
         if (show) {
             new Handler().postDelayed(() -> {
-                // AppLoadingDialog.get().show();
+                AppLoadingDialog.get().show();
             }, 100L);
         }
     }
 
-    private void dismissLoading() {
+    public void showError(String message, @Nullable Runnable onClickListener) {
+        AppAlertDialog.get().show(message, context.getString(R.string.error), context.getString(R.string.ok), onClickListener);
+    }
 
+    public void showAlert(
+            String message,
+            @Nullable String title,
+            @Nullable String positiveText,
+            @Nullable String negativeText,
+            @Nullable AlertDialogOnClickListener onClickListener,
+            @Nullable Boolean reverseLayout
+    ) {
+        AppAlertDialog.get().show(message, title, positiveText, negativeText, onClickListener, reverseLayout);
+    }
+
+    private void dismissLoading() {
+        AppLoadingDialog.get().dismiss();
+        AppAlertDialog.get().dismiss();
+    }
+
+    public void requestPermission(
+            String permissionExplanation,
+            List<String> permissions,
+            RequestPermissionCallback callback
+    ) {
+        Dexter.withContext(this).withPermissions(permissions).withListener(new MultiplePermissionsListener() {
+            @Override
+            public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                    callback.onPermissionGranted();
+                } else {
+                    callback.onPermissionDenied();
+                }
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                if (permissionToken != null) {
+                    permissionToken.continuePermissionRequest();
+                }
+            }
+        });
+    }
+
+    public void goToAppSettings() {
+        final Uri uri = Uri.fromParts("package", getPackageName(), null);
+        final Intent intent = new Intent((Settings.ACTION_APPLICATION_DETAILS_SETTINGS));
+        intent.setData(uri);
+
+        startActivity(intent);
     }
 }

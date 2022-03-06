@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="pad_S">@dimen/_4sdp</dimen>
+    <dimen name="pad_M">@dimen/_8sdp</dimen>
+    <dimen name="pad_L">@dimen/_16sdp</dimen>
+
+    <dimen name="radius_S">@dimen/_4sdp</dimen>
+    <dimen name="radius_M">@dimen/_8sdp</dimen>
+    <dimen name="radius_L">@dimen/_12sdp</dimen>
+
+    <dimen name="elevation">@dimen/_10sdp</dimen>
+</resources>

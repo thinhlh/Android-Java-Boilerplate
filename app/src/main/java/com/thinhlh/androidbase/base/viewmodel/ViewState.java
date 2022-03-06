@@ -1,5 +1,7 @@
 package com.thinhlh.androidbase.base.viewmodel;
 
+import com.thinhlh.androidbase.data.AppConst;
+
 /**
  * Created by thinhlh on 02/03/2022.
  * Copyright (c). All rights reserved

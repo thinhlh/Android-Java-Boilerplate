@@ -1,15 +1,15 @@
 package com.thinhlh.androidbase.base.dialog;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 
 import androidx.databinding.DataBindingUtil;
 
 import com.thinhlh.androidbase.R;
 import com.thinhlh.androidbase.databinding.DialogLoadingBinding;
-import com.thinhlh.utils.helper.AppPreferences;
-
-import kotlin.jvm.Volatile;
 
 /**
  * Created by thinhlh on 02/03/2022.
@@ -34,7 +34,7 @@ public class AppLoadingDialog extends BaseDialog {
     /**
      * Show loading dialog
      */
-    void show() {
+    public void show() {
         if (context == null) return;
         final DialogLoadingBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(context),
@@ -43,7 +43,18 @@ public class AppLoadingDialog extends BaseDialog {
                 true
         );
 
-        dialog = new AlertDialog.Builder(context,R.style.Base_MaterialAlerDialog)
+        dialog = new AlertDialog.Builder(context, R.style.Base_MaterialAlertDialog)
+                .setView(binding.getRoot())
+                .setCancelable(true)
+                .create();
+
+        dialog.dismiss();
+
+        if (((Activity) context).isFinishing()) return;
+
+        dialog.show();
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
 }

@@ -6,4 +6,6 @@
 
     <!-- App Common Strings-->
     <string name="text_loading">Loading...</string>
+    <string name="ok">OK</string>
+    <string name="error">Error</string>
 </resources>
