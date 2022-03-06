@@ -1,5 +1,6 @@
 package com.thinhlh.androidbase.base.activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
 
@@ -12,6 +13,7 @@ import com.thinhlh.androidbase.base.viewmodel.BaseViewModel;
  * Copyright (c). All rights reserved
  */
 public abstract class BaseFragmentBindingActivity<T extends ViewDataBinding, VM extends BaseViewModel> extends BaseFullscreenActivity<T, VM> {
+
     protected abstract FragmentNavigator createFragmentNavigator();
 
     @Nullable

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -153,7 +154,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, VM extends BaseVie
         return super.dispatchTouchEvent(ev);
     }
 
-    public void showLoading(Boolean show) {
+    public void showLoading(@NonNull Boolean show) {
         dismissLoading();
 
         if (show) {

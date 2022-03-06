@@ -7,7 +7,4 @@ package com.thinhlh.utils.constants;
 public abstract class Const {
 
     public static final boolean DEBUG_MODE = true;
-
-    public static final boolean RUN_IN_FULL_SCREEN = true;
-
 }

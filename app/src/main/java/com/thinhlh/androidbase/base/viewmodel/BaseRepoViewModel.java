@@ -1,5 +1,8 @@
 package com.thinhlh.androidbase.base.viewmodel;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.thinhlh.androidbase.base.userview.BaseUserView;
 import com.thinhlh.domain.repository.base.BaseRepo;
 
@@ -11,9 +14,17 @@ import com.thinhlh.domain.repository.base.BaseRepo;
  */
 public abstract class BaseRepoViewModel<R extends BaseRepo, V extends BaseUserView> extends BaseUiViewModel<V> {
 
-    protected R repo;
+    @Nullable
+    private R repo;
 
     protected abstract R createRepo();
 
+    @NonNull
+    public R getRepo() {
+        if (repo == null) {
+            repo = createRepo();
+        }
+        return repo;
+    }
 }
 

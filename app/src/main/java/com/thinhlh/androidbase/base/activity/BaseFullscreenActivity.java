@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
 
 import com.thinhlh.androidbase.base.viewmodel.BaseViewModel;
+import com.thinhlh.androidbase.data.AppConst;
 import com.thinhlh.utils.constants.Const;
 
 /**
@@ -16,7 +17,7 @@ import com.thinhlh.utils.constants.Const;
  * Copyright (c). All rights reserved
  */
 public abstract class BaseFullscreenActivity<T extends ViewDataBinding, VM extends BaseViewModel> extends BaseActivity<T, VM> {
-    private final Boolean runInFullScreen = Const.RUN_IN_FULL_SCREEN;
+    private final Boolean runInFullScreen = AppConst.RUN_IN_FULLSCREEN;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

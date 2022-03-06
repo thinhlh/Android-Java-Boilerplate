@@ -122,7 +122,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, VM extends BaseVie
     /**
      * Show loading dialog
      */
-    public void showLoading(boolean show) {
+    public void showLoading(@NonNull Boolean show) {
         if (this.getActivity() instanceof BaseActivity) {
             ((BaseActivity<?, ?>) this.getActivity()).showLoading(show);
         }

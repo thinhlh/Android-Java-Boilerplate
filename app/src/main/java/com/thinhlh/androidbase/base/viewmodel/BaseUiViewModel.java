@@ -1,5 +1,7 @@
 package com.thinhlh.androidbase.base.viewmodel;
 
+import androidx.annotation.NonNull;
+
 import com.thinhlh.androidbase.base.userview.BaseUserView;
 
 /**
@@ -11,7 +13,7 @@ import com.thinhlh.androidbase.base.userview.BaseUserView;
 public abstract class BaseUiViewModel<V extends BaseUserView> extends BaseViewModel {
     protected V uiCallback;
 
-    public void init(V uiCallback) {
+    public void init(@NonNull V uiCallback) {
         this.uiCallback = uiCallback;
     }
 }

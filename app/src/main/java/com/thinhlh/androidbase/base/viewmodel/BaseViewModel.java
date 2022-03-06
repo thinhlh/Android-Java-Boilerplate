@@ -31,7 +31,7 @@ public abstract class BaseViewModel extends ViewModel implements LifecycleObserv
     /**
      * Show error
      */
-    public void showError(String errorMessage) {
+    public void showErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
         viewState.setValue(ViewState.SHOW_ERROR);
     }

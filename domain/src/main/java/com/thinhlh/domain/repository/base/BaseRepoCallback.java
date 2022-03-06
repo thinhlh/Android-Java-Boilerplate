@@ -8,12 +8,16 @@ public interface BaseRepoCallback<T> {
     /**
      * Called while requesting api, default is show app loading
      */
-    void apiRequesting(Boolean showLoading);
+    default void apiRequesting(Boolean showLoading) {
+
+    }
 
     /**
      * Called when api return success but the body return failure
      */
-    void showError(String message);
+    default void showError(String message) {
+
+    }
 
     /**
      * Called when api return success is true
@@ -23,5 +27,6 @@ public interface BaseRepoCallback<T> {
     /**
      * Called when api calling fail
      */
-    void apiFailure();
+    default void apiFailure() {
+    }
 }

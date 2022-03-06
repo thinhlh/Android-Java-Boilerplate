@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by thinhlh on 3/1/2022.
  * Copyright 2022 (c)
  */
-public abstract class BaseResponse<T> {
+public class BaseResponse<T> {
 
 
     @SerializedName("success")
@@ -17,4 +17,16 @@ public abstract class BaseResponse<T> {
 
     @SerializedName("data")
     T data;
+
+    public T getData() {
+        return data;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
 }
