@@ -6,6 +6,7 @@ import android.view.View;
 import com.thinhlh.androidbase.R;
 import com.thinhlh.androidbase.base.fragment.BaseFragment;
 import com.thinhlh.androidbase.databinding.FragmentHomeBinding;
+import com.thinhlh.androidbase.view.landing.LandingFragment;
 
 /**
  * Created by thinhlh on 06/03/2022.
@@ -46,6 +47,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeVM> impl
 
     @Override
     public void updateData(String newData) {
-        binding.text.setText(newData);
+        getNavigator().goTo(new LandingFragment());
     }
 }

@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
+
 import com.thinhlh.androidbase.R;
 
 import java.util.Objects;
@@ -102,57 +103,65 @@ public class FragmentNavigator {
      * it will be added to the transaction.
      *
      * @param fragment  The fragment which will be added
-     * @param direction
+     * @param direction indication the transition direction
      */
 
-    void goTo(Fragment fragment, @Nullable TransactionDirection direction) {
+    public void goTo(Fragment fragment, @Nullable TransactionDirection direction) {
         currentState = fragment.getLifecycle().getCurrentState();
 
         final FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 
         if (direction != null) {
             switch (direction) {
-                case LTR:
+                case RTL:
                     fragmentTransaction.setCustomAnimations(
                             R.anim.enter_from_right,
                             R.anim.exit_to_left,
                             R.anim.enter_from_left,
                             R.anim.exit_to_right
                     );
-                case RTL:
+                    break;
+                case LTR:
                     fragmentTransaction.setCustomAnimations(
                             R.anim.enter_from_left,
                             R.anim.exit_to_right,
                             R.anim.enter_from_right,
                             R.anim.exit_to_left
                     );
-                case TOP_DOWN:
+                    break;
+                case BOTTOM_UP:
                     fragmentTransaction.setCustomAnimations(
                             R.anim.enter_from_bottom,
                             R.anim.exit_to_top,
                             R.anim.enter_from_top,
                             R.anim.exit_to_bottom
                     );
-                case BOTTOM_UP:
+                    break;
+                case TOP_DOWN:
                     fragmentTransaction.setCustomAnimations(
                             R.anim.enter_from_top,
                             R.anim.exit_to_bottom,
                             R.anim.enter_from_bottom,
                             R.anim.exit_to_top
                     );
-            }
-
-            fragmentTransaction.addToBackStack(getTag(fragment));
-            fragmentTransaction.add(mDefaultContainer, fragment, getTag(fragment));
-
-            if (currentState != null) {
-                if (currentState.isAtLeast(Lifecycle.State.CREATED)) {
-                    fragmentTransaction.setMaxLifecycle(fragment, currentState);
-                }
-                fragmentTransaction.commit();
+                    break;
             }
         }
+
+        fragmentTransaction.addToBackStack(getTag(fragment));
+        fragmentTransaction.add(mDefaultContainer, fragment, getTag(fragment));
+
+        if (currentState != null) {
+            if (currentState.isAtLeast(Lifecycle.State.CREATED)) {
+                fragmentTransaction.setMaxLifecycle(fragment, currentState);
+            }
+            fragmentTransaction.commit();
+        }
         mFragmentManager.executePendingTransactions();
+    }
+
+    public void goTo(Fragment fragment) {
+        goTo(fragment, null);
     }
 
     /**
@@ -287,3 +296,5 @@ public class FragmentNavigator {
         mFragmentManager.setFragmentResultListener(requestKey, lifecycleOwner, listener);
     }
 }
+
+

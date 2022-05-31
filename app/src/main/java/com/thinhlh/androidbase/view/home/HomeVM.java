@@ -7,18 +7,19 @@ import com.thinhlh.domain.repository.common.CommonRepo;
 
 public class HomeVM extends BaseRepoViewModel<CommonRepo, HomeUV> {
     public void onTextClicked() {
-        getRepo().ping(new BaseRepoCallback<BaseResponse<String>>() {
-
-            @Override
-            public void apiRequesting(Boolean show) {
-                showLoading(show);
-            }
-
-            @Override
-            public void apiResponse(BaseResponse<String> data) {
-                uiCallback.updateData(data.getData());
-            }
-        });
+        uiCallback.updateData("");
+//        getRepo().ping(new BaseRepoCallback<BaseResponse<String>>() {
+//
+//            @Override
+//            public void apiRequesting(Boolean show) {
+//                showLoading(show);
+//            }
+//
+//            @Override
+//            public void apiResponse(BaseResponse<String> data) {
+//                uiCallback.updateData(data.getData());
+//            }
+//        });
     }
 
     @Override

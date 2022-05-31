@@ -9,8 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Primary colors -->
-    <color name="primary">#38324E</color>
-    <color name="primaryVariant">#38324E</color>
+    <color name="primary">#ff8a80</color>
+    <color name="primaryVariant">#ff8a80</color>
     <color name="onPrimary">#FFFFFF</color>
 
     <!-- Secondary colors -->
@@ -19,18 +19,18 @@
     <color name="onSecondary">#FFFFFF</color>
 
     <!-- Other Colors-->
-    <color name="background">#38324E</color>
-    <color name="surface">#FEFFFE</color>
+    <color name="background">#FFFFFF</color>
+    <color name="surface">#EEEEEE</color>
     <color name="onSurface">#000000</color>
     <color name="surfaceSecondary">#C3C3C3</color>
     <color name="onSurfaceSecondary">#FFFFFF</color>
     <color name="error">#FF0000</color>
     <color name="onError">#FFFFFF</color>
-    <color name="divider">#EFEFEF</color>
+    <color name="divider">#505050</color>
     <color name="ripple">#D6D6D6</color>
 
-    <color name="textPrimary">#FFFFFF</color>
-    <color name="textSecondary">#B2B2B2</color>
+    <color name="textPrimary">#000000</color>
+    <color name="textSecondary">#222222</color>
     <color name="disabled">#AAFFFFFF</color>
 
 </resources>
