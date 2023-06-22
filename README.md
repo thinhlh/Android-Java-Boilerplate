@@ -1,2 +1,2 @@
 # Android-Java-Boilerplate
-Android Java Template with fully support.
+Android Java Template follow MVVM architecture with fully support.
